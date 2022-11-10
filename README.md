@@ -36,7 +36,7 @@ cd aviasales_test_task_parser
 make install
 ```
 
-### 1.2 Активарование виртуального окружения
+### 1.2 Активация виртуального окружения
 
 ```bash
 python3 -m venv .venv
@@ -64,7 +64,7 @@ get_flight -a
 get_flight -c
 ```
 
-Для запуска справки используйте 
+Для запуска справки используйте:
 
 ```bash
 get_flight -h
