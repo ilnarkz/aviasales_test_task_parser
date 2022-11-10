@@ -116,9 +116,9 @@ def get_new_flights(xml_file1, xml_file2):
 
 def get_changes(xml_file1, xml_file2):
     soup1 = read_file(xml_file1)
-    onward_itinerary1 = soup1.find('PricedItineraries').find_all('OnwardPricedItinerary')
+    onward_itinerary1 = get_onward_itinerary(soup1)
     soup2 = read_file(xml_file2)
-    onward_itinerary2 = soup2.find('PricedItineraries').find_all('OnwardPricedItinerary')
+    onward_itinerary2 = get_onward_itinerary(soup2)
     count = 0
     for index, data1 in enumerate(onward_itinerary1):
         carrier1 = get_carrier(data1)
