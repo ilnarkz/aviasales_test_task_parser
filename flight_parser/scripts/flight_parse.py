@@ -1,6 +1,6 @@
 import argparse
 
-from flight_parser.parser import get_data_flight
+from flight_parser.parser import get_data_flight, get_new_flights, get_changes
 
 
 def main():
@@ -29,6 +29,10 @@ def main():
         print()
         print('In RS_Via-3.xml:')
         print(get_data_flight('RS_Via-3.xml'))
+    if args.has_added:
+        print(get_new_flights('RS_Via-3.xml', 'RS_ViaOW.xml'))
+    if args.has_changed:
+        print(get_changes('RS_Via-3.xml', 'RS_ViaOW.xml'))
 
 
 if __name__ == '__main__':
