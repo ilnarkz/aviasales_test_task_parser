@@ -1,7 +1,7 @@
 # aviasales_test_task_parser
 
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/cc96e7a64226403cf534/maintainability)](https://codeclimate.com/github/ilnarkz/aviasales_test_task_parser/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/cc96e7a64226403cf534/maintainability)](https://codeclimate.com/github/ilnarkz/aviasales_test_task_parser/maintainability) [![aviasales_parser](https://github.com/ilnarkz/aviasales_test_task_parser/actions/workflows/ci.yml/badge.svg)](https://github.com/ilnarkz/aviasales_test_task_parser/actions/workflows/ci.yml) [![Test Coverage](https://api.codeclimate.com/v1/badges/cc96e7a64226403cf534/test_coverage)](https://codeclimate.com/github/ilnarkz/aviasales_test_task_parser/test_coverage)
 
 ## Тестовое задание в команду гейтов (Python)
 
