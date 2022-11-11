@@ -15,6 +15,7 @@ bs4 = "^0.0.1"
 flake8 = "^5.0.4"
 pytest = "^7.1.3"
 pytest-cov = "^4.0.0"
+lxml = "^4.9.1"
 
 [tool.poetry.scripts]
 get_flight = "flight_parser.scripts.flight_parse:main"
