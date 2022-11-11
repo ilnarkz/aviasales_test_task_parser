@@ -83,7 +83,7 @@ def is_same_flight(carrier_xml1: str, carrier_xml2: str,
 
 def parse_time(time_tag: str) -> Tuple[str, str]:
     date = time_tag[:-5]
-    time = f'{time_tag[-4:-2]}: {time_tag[-2:]}'
+    time = f'{time_tag[-4:-2]}:{time_tag[-2:]}'
     return date, time
 
 
