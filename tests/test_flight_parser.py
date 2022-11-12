@@ -1,13 +1,15 @@
 import json
+import sys
 from bs4 import BeautifulSoup
 
 from flight_parser.parser import parse_time, get_itinerary, get_flight_number, get_carrier, get_departure_time, \
     get_arrival_time, get_number_of_stops, get_ticket_type, get_class, parse_data_flight, get_new_flights, \
-    get_data_flight
+    get_data_flight, get_changes_between_xml_files
 
 XML_FILE1 = 'tests/fixtures/RS_Via-3.xml'
 XML_FILE2 = 'tests/fixtures/RS_ViaOW.xml'
 XML_FILE_WITH_ONE_FLIGHT = 'tests/fixtures/xml_file_with_one_flight.xml'
+XML_FILE_WITH_ONE_FLIGHT_WITH_ADDED_FLIGHT = 'tests/fixtures/xml_file_with_one_flight_with_added_flight.xml'
 
 
 def test_parse_time():
@@ -45,17 +47,35 @@ def test_flight_data():
     assert parse_data_flight(XML_FILE2)[0] == ('AirIndia - AirIndia', 'DXB - DEL - BKK',
                                                '2015-10-27T0005', '2015-10-27T1920', prices_xml2[0])
     data = {
-                "Onward itinerary": {
-                    "Carrier": get_carrier(onward_itinerary[0]),
-                    "Itinerary": get_itinerary(onward_itinerary[0]),
-                    "Departure time": parse_time(get_departure_time(onward_itinerary[0])),
-                    "Arrival time": parse_time(get_arrival_time(onward_itinerary[0])),
-                },
-                "Return itinerary": {
-                    "Carrier": get_carrier(return_itinerary[0]),
-                    "Itinerary": get_itinerary(return_itinerary[0]),
-                    "Departure time": parse_time(get_departure_time(return_itinerary[0])),
-                    "Arrival time": parse_time(get_arrival_time(return_itinerary[0])),
-                },
-            }
+        "Onward itinerary": {
+            "Carrier": get_carrier(onward_itinerary[0]),
+            "Itinerary": get_itinerary(onward_itinerary[0]),
+            "Departure time": parse_time(get_departure_time(onward_itinerary[0])),
+            "Arrival time": parse_time(get_arrival_time(onward_itinerary[0])),
+        },
+        "Return itinerary": {
+            "Carrier": get_carrier(return_itinerary[0]),
+            "Itinerary": get_itinerary(return_itinerary[0]),
+            "Departure time": parse_time(get_departure_time(return_itinerary[0])),
+            "Arrival time": parse_time(get_arrival_time(return_itinerary[0])),
+        },
+    }
     assert get_data_flight(XML_FILE_WITH_ONE_FLIGHT) == json.dumps([data], indent=4)
+
+
+def test_get_new_flights(capsys):
+    get_new_flights(XML_FILE_WITH_ONE_FLIGHT, XML_FILE_WITH_ONE_FLIGHT_WITH_ADDED_FLIGHT)
+    out, err = capsys.readouterr()
+    sys.stdout.write(out)
+    out = out.split('\n')
+    assert out[1] == 'DXB - CAN - BKK'
+
+
+def test_get_changes_between_xml_files(capsys):
+    get_changes_between_xml_files(XML_FILE1, XML_FILE2)
+    out, err = capsys.readouterr()
+    sys.stdout.write(out)
+    out = out.split('\n')
+    assert out[0] == '1 flight. Departure time for AirIndia - AirIndia (996 - 332) and  DXB - DEL - BKK was changed from 2015-10-22T0005 to 2015-10-27T0005'
+    assert out[1] == '1 flight. Arrival time for AirIndia - AirIndia (996 - 332) and  DXB - DEL - BKK was changed from 2015-10-22T1935 to 2015-10-27T1920'
+    assert out[-4] == '200 flight. Class for Emirates - Emirates (384 - 384) and DXB - BKK was changed from U - U to B - B'

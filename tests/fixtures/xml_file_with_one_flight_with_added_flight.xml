@@ -1,0 +1,124 @@
+<PricedItineraries>
+    <Flights>
+        <OnwardPricedItinerary>
+            <Flights>
+                <Flight>
+                    <Carrier id="AI">AirIndia</Carrier>
+                    <FlightNumber>996</FlightNumber>
+                    <Source>DXB</Source>
+                    <Destination>DEL</Destination>
+                    <DepartureTimeStamp>2015-10-22T0005</DepartureTimeStamp>
+                    <ArrivalTimeStamp>2015-10-22T0445</ArrivalTimeStamp>
+                    <Class>G</Class>
+                    <NumberOfStops>0</NumberOfStops>
+                    <FareBasis>
+                        2820231f40c802-03e6-4655-9ece-0fb1ad670b5c@@$255_DXB_DEL_996_9_00:05_$255_DEL_BKK_332_9_13:50_$255_BKK_DEL_333_9_08:50_$255_DEL_DXB_995_9_20:40__A2_0_0
+                    </FareBasis>
+                    <WarningText/>
+                    <TicketType>E</TicketType>
+                </Flight>
+                <Flight>
+                    <Carrier id="AI">AirIndia</Carrier>
+                    <FlightNumber>332</FlightNumber>
+                    <Source>DEL</Source>
+                    <Destination>BKK</Destination>
+                    <DepartureTimeStamp>2015-10-22T1350</DepartureTimeStamp>
+                    <ArrivalTimeStamp>2015-10-22T1935</ArrivalTimeStamp>
+                    <Class>G</Class>
+                    <NumberOfStops>0</NumberOfStops>
+                    <FareBasis>
+                        2820231f40c802-03e6-4655-9ece-0fb1ad670b5c@@$255_DXB_DEL_996_9_00:05_$255_DEL_BKK_332_9_13:50_$255_BKK_DEL_333_9_08:50_$255_DEL_DXB_995_9_20:40__A2_0_0
+                    </FareBasis>
+                    <WarningText/>
+                    <TicketType>E</TicketType>
+                </Flight>
+            </Flights>
+        </OnwardPricedItinerary>
+        <ReturnPricedItinerary>
+            <Flights>
+                <Flight>
+                    <Carrier id="AI">AirIndia</Carrier>
+                    <FlightNumber>333</FlightNumber>
+                    <Source>BKK</Source>
+                    <Destination>DEL</Destination>
+                    <DepartureTimeStamp>2015-10-30T0850</DepartureTimeStamp>
+                    <ArrivalTimeStamp>2015-10-30T1205</ArrivalTimeStamp>
+                    <Class>U</Class>
+                    <NumberOfStops>0</NumberOfStops>
+                    <FareBasis>
+                        2820231f40c802-03e6-4655-9ece-0fb1ad670b5c@@$255_DXB_DEL_996_9_00:05_$255_DEL_BKK_332_9_13:50_$255_BKK_DEL_333_9_08:50_$255_DEL_DXB_995_9_20:40__A2_0_0
+                    </FareBasis>
+                    <WarningText/>
+                    <TicketType>E</TicketType>
+                </Flight>
+                <Flight>
+                    <Carrier id="AI">AirIndia</Carrier>
+                    <FlightNumber>995</FlightNumber>
+                    <Source>DEL</Source>
+                    <Destination>DXB</Destination>
+                    <DepartureTimeStamp>2015-10-30T2040</DepartureTimeStamp>
+                    <ArrivalTimeStamp>2015-10-30T2245</ArrivalTimeStamp>
+                    <Class>U</Class>
+                    <NumberOfStops>0</NumberOfStops>
+                    <FareBasis>
+                        2820231f40c802-03e6-4655-9ece-0fb1ad670b5c@@$255_DXB_DEL_996_9_00:05_$255_DEL_BKK_332_9_13:50_$255_BKK_DEL_333_9_08:50_$255_DEL_DXB_995_9_20:40__A2_0_0
+                    </FareBasis>
+                    <WarningText/>
+                    <TicketType>E</TicketType>
+                </Flight>
+            </Flights>
+        </ReturnPricedItinerary>
+        <Pricing currency="SGD">
+            <ServiceCharges type="SingleAdult" ChargeType="BaseFare">117.00</ServiceCharges>
+            <ServiceCharges type="SingleAdult" ChargeType="AirlineTaxes">429.80</ServiceCharges>
+            <ServiceCharges type="SingleAdult" ChargeType="TotalAmount">546.80</ServiceCharges>
+        </Pricing>
+    </Flights>
+    <Flights>
+        <OnwardPricedItinerary>
+            <Flights>
+                <Flight>
+                    <Carrier id="CZ">China Southern Airlines</Carrier>
+                    <FlightNumber>384</FlightNumber>
+                    <Source>DXB</Source>
+                    <Destination>CAN</Destination>
+                    <DepartureTimeStamp>2015-10-27T0140</DepartureTimeStamp>
+                    <ArrivalTimeStamp>2015-10-27T1225</ArrivalTimeStamp>
+                    <Class>T</Class>
+                    <NumberOfStops>0</NumberOfStops>
+                    <FareBasis>
+                        2820303decf751-5511-447a-aeb1-810a6b10ad7d@@$255_DXB_CAN_384_107_01:40_$255_CAN_BKK_361_107_19:50__A2_1_1
+                    </FareBasis>
+                    <WarningText/>
+                    <TicketType>E</TicketType>
+                </Flight>
+                <Flight>
+                    <Carrier id="CZ">China Southern Airlines</Carrier>
+                    <FlightNumber>361</FlightNumber>
+                    <Source>CAN</Source>
+                    <Destination>BKK</Destination>
+                    <DepartureTimeStamp>2015-10-27T1950</DepartureTimeStamp>
+                    <ArrivalTimeStamp>2015-10-27T2150</ArrivalTimeStamp>
+                    <Class>Y</Class>
+                    <NumberOfStops>0</NumberOfStops>
+                    <FareBasis>
+                        2820303decf751-5511-447a-aeb1-810a6b10ad7d@@$255_DXB_CAN_384_107_01:40_$255_CAN_BKK_361_107_19:50__A2_1_1
+                    </FareBasis>
+                    <WarningText/>
+                    <TicketType>E</TicketType>
+                </Flight>
+            </Flights>
+        </OnwardPricedItinerary>
+        <Pricing currency="SGD">
+            <ServiceCharges type="SingleAdult" ChargeType="BaseFare">233.00</ServiceCharges>
+            <ServiceCharges type="SingleAdult" ChargeType="AirlineTaxes">152.40</ServiceCharges>
+            <ServiceCharges type="SingleAdult" ChargeType="TotalAmount">385.40</ServiceCharges>
+            <ServiceCharges type="SingleChild" ChargeType="BaseFare">233.00</ServiceCharges>
+            <ServiceCharges type="SingleChild" ChargeType="AirlineTaxes">132.20</ServiceCharges>
+            <ServiceCharges type="SingleChild" ChargeType="TotalAmount">365.20</ServiceCharges>
+            <ServiceCharges type="SingleInfant" ChargeType="BaseFare">129.00</ServiceCharges>
+            <ServiceCharges type="SingleInfant" ChargeType="AirlineTaxes">11.40</ServiceCharges>
+            <ServiceCharges type="SingleInfant" ChargeType="TotalAmount">140.40</ServiceCharges>
+        </Pricing>
+    </Flights>
+</PricedItineraries>
