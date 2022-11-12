@@ -25,14 +25,14 @@ def main():
     args = parser.parse_args()
     if args.flights:
         print('In RS_ViaOW.xml:')
-        print(get_data_flight('RS_ViaOW.xml'))
+        print(get_data_flight('tests/fixtures/RS_ViaOW.xml'))
         print()
         print('In RS_Via-3.xml:')
-        print(get_data_flight('RS_Via-3.xml'))
+        print(get_data_flight('tests/fixtures/RS_Via-3.xml'))
     if args.has_added:
-        print(get_new_flights('RS_Via-3.xml', 'RS_ViaOW.xml'))
+        print(get_new_flights('tests/fixtures/RS_Via-3.xml', 'tests/fixtures/RS_ViaOW.xml'))
     if args.has_changed:
-        print(get_changes_between_xml_files('RS_Via-3.xml', 'RS_ViaOW.xml'))
+        print(get_changes_between_xml_files('tests/fixtures/RS_Via-3.xml', 'tests/fixtures/RS_ViaOW.xml'))
 
 
 if __name__ == '__main__':

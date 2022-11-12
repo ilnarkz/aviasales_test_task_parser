@@ -1,30 +1,28 @@
-import pytest
+import json
 from bs4 import BeautifulSoup
 
 from flight_parser.parser import parse_time, get_itinerary, get_flight_number, get_carrier, get_departure_time, \
-    get_arrival_time, get_number_of_stops, get_ticket_type, get_class
+    get_arrival_time, get_number_of_stops, get_ticket_type, get_class, parse_data_flight, get_new_flights, \
+    get_data_flight
 
-XML_FILE1 = 'RS_Via-3.xml'
-XML_FILE2 = 'RS_ViaOW.xml'
-
-
-def read_files(xml_file):
-    file1 = open(xml_file).read()
-    return file1
+XML_FILE1 = 'tests/fixtures/RS_Via-3.xml'
+XML_FILE2 = 'tests/fixtures/RS_ViaOW.xml'
+XML_FILE_WITH_ONE_FLIGHT = 'tests/fixtures/xml_file_with_one_flight.xml'
 
 
-@pytest.mark.parametrize('received, expected', [('2015-10-30T2040', ('2015-10-30', '20:40')),
-                                                ('2000-12-31T0000', ('2000-12-31', '00:00')),
-                                                ('2022-01-01T2359', ('2022-01-01', '23:59'))])
-def test_parse_time(received, expected):
-    assert parse_time(received) == expected
+def test_parse_time():
+    assert parse_time('2015-10-30T2040') == ('2015-10-30', '20:40')
 
 
 def test_flight_data():
     with open(XML_FILE1, 'r', encoding='utf-8') as xml:
-        soup_file = BeautifulSoup(xml.read(), 'xml')
-    onward_itinerary = soup_file.find('PricedItineraries').find_all('OnwardPricedItinerary')
-    return_itinerary = soup_file.find('PricedItineraries').find_all('ReturnPricedItinerary')
+        soup_file_xml1 = BeautifulSoup(xml.read(), 'xml')
+    with open(XML_FILE2, 'r', encoding='utf-8') as xml:
+        soup_file_xml2 = BeautifulSoup(xml.read(), 'xml')
+    onward_itinerary = soup_file_xml1.find('PricedItineraries').find_all('OnwardPricedItinerary')
+    return_itinerary = soup_file_xml1.find('PricedItineraries').find_all('ReturnPricedItinerary')
+    prices_xml1 = soup_file_xml1.find_all('ServiceCharges', ChargeType="TotalAmount", type="SingleAdult")
+    prices_xml2 = soup_file_xml2.find_all('ServiceCharges', ChargeType="TotalAmount", type="SingleAdult")
     assert get_itinerary(onward_itinerary[0]) == 'DXB - DEL - BKK'
     assert get_itinerary(return_itinerary[0]) == 'BKK - DEL - DXB'
     assert get_flight_number(onward_itinerary[0]) == '996 - 332'
@@ -41,3 +39,23 @@ def test_flight_data():
     assert get_class(return_itinerary[0]) == 'U - U'
     assert get_ticket_type(onward_itinerary[0]) == 'E - E'
     assert get_ticket_type(return_itinerary[0]) == 'E - E'
+    assert parse_data_flight(XML_FILE1)[0] == ('AirIndia - AirIndia', 'DXB - DEL - BKK', '2015-10-22T0005',
+                                               '2015-10-22T1935', 'AirIndia - AirIndia', 'BKK - DEL - DXB',
+                                               '2015-10-30T0850', '2015-10-30T2245', prices_xml1[0])
+    assert parse_data_flight(XML_FILE2)[0] == ('AirIndia - AirIndia', 'DXB - DEL - BKK',
+                                               '2015-10-27T0005', '2015-10-27T1920', prices_xml2[0])
+    data = {
+                "Onward itinerary": {
+                    "Carrier": get_carrier(onward_itinerary[0]),
+                    "Itinerary": get_itinerary(onward_itinerary[0]),
+                    "Departure time": parse_time(get_departure_time(onward_itinerary[0])),
+                    "Arrival time": parse_time(get_arrival_time(onward_itinerary[0])),
+                },
+                "Return itinerary": {
+                    "Carrier": get_carrier(return_itinerary[0]),
+                    "Itinerary": get_itinerary(return_itinerary[0]),
+                    "Departure time": parse_time(get_departure_time(return_itinerary[0])),
+                    "Arrival time": parse_time(get_arrival_time(return_itinerary[0])),
+                },
+            }
+    assert get_data_flight(XML_FILE_WITH_ONE_FLIGHT) == json.dumps([data], indent=4)
